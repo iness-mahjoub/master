@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutterp/components/default_button.dart';
 import 'package:flutterp/constant.dart';
+import 'package:flutterp/screens/cart_list/cart_list_screen.dart';
+import 'package:flutterp/screens/categorie_list/categorie_list_screen.dart';
+
 
 
 import '../../../size_config.dart';
+import '../../favorie_list/componenets/body.dart';
+import '../../favorie_list/favoorie_list_screen.dart';
+import '../login_success_screen.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -19,6 +25,28 @@ class _BodyState extends State<Body> {
       _selectedIndex = index;
     });
   }
+
+  void _navigateToFavoritePage() {
+    // This function will be called when the favorite icon is pressed
+    // Add your navigation logic here
+    Navigator.pushNamed(context,FavorieList.routeName);
+    
+  }
+  void _navigateToCatgorieList() {
+    // This function will be called when the favorite icon is pressed
+    // Add your navigation logic here
+    Navigator.pushNamed(context,CategoryListScreen.routeName);
+    
+  }
+  void _navigateToHomePage() {
+    // This function will be called when the favorite icon is pressed
+    // Add your navigation logic here
+    Navigator.pushNamed(context,CartList.routeName);
+    
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +85,7 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        // This code will be executed when the icon is pressed
-                        // Add your logic here
-                      },
+                      onTap: _navigateToFavoritePage,
                       child: Container(
                         height: getProportionateScreenWidth(46),
                         width: getProportionateScreenWidth(46),
@@ -69,9 +94,9 @@ class _BodyState extends State<Body> {
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
-                          Icons.notifications,
+                          Icons.favorite,
                           color: kPrimaryColor,
-                          size: getProportionateScreenWidth(24),
+                          size: getProportionateScreenWidth(20),
                         ),
                       ),
                     ),
@@ -89,17 +114,34 @@ class _BodyState extends State<Body> {
           unselectedItemColor: Colors.grey,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: IconButton(
+                icon: const Icon(Icons.home),
+                onPressed: () {
+                  // Navigate to the home screen
+                 Navigator.pushNamed(context,LoginSuccessScreen.routeName);
+                },
+              ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.category),
+              icon: IconButton(
+                icon: Icon(Icons.category),
+                onPressed: () {
+                  // Navigate to the categories screen
+                 Navigator.pushNamed(context,CategoryListScreen.routeName);
+                },
+              ),
               label: 'Categories',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
-              label: 'Cart',
-            ),
+           BottomNavigationBarItem(
+              icon: IconButton(
+                icon: const Icon(Icons.shopping_cart),
+                onPressed: () {
+                  // Navigate to the cart screen
+                 Navigator.pushNamed(context,CartList.routeName);
+                },
+              ),
+              label: 'Cart'),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),
               label: 'Account',
@@ -110,3 +152,5 @@ class _BodyState extends State<Body> {
     );
   }
 }
+
+

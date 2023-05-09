@@ -52,6 +52,9 @@ class _SignUpFormState extends State<SignUpForm>{
             press: (){
               if(_formKey.currentState!.validate()){
                 _formKey.currentState!.save();
+                validateEmail() async {
+                  
+                }
                 // form is valid, handle form submission here
                 Navigator.pushNamed(context, CompleteProfileScreen.routeName);
               }
