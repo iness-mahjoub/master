@@ -16,7 +16,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
 
   Future<List<dynamic>> getCategories() async {
     String url ="http://localhost:8000/api/categories";
-    var response = await http.get(Uri.parse(url));
+    var response = await http.get(Uri.parse(url,));
     var data = jsonDecode(response.body);
     var categories = data['hydra:member'];
 
@@ -86,6 +86,8 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
                           // Navigate to category details screen
                           // using Navigator.push() method
                         },
+
+                        // containe design lsit 
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -109,6 +111,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
                             ],
                           ),
                         ),
+                        // end contain design list 
                       );
                     }),
                   );
